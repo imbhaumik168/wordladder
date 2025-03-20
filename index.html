@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Word Ladder Game</title>
+      <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+      <div class="container">
+            <header>
+                  <h1>Word Ladder</h1>
+                  <div class="game-controls">
+                        <button id="startBtn" class="control-btn">Start Game</button>
+                        <div class="word-length-selector hidden">
+                              <button class="word-length-btn" data-length="3">3 Letters</button>
+                              <button class="word-length-btn" data-length="5">5 Letters</button>
+                              <button class="word-length-btn" data-length="8">8 Letters</button>
+                        </div>
+                        <button id="restartBtn" class="control-btn hidden">Restart Game</button>
+                  </div>
+            </header>
+
+            <div class="game-board hidden">
+                  <!-- Game grid will be dynamically generated -->
+            </div>
+
+            <div class="keyboard hidden">
+                  <div class="keyboard-row">
+                        <button class="key" data-key="Q">Q</button>
+                        <button class="key" data-key="W">W</button>
+                        <button class="key" data-key="E">E</button>
+                        <button class="key" data-key="R">R</button>
+                        <button class="key" data-key="T">T</button>
+                        <button class="key" data-key="Y">Y</button>
+                        <button class="key" data-key="U">U</button>
+                        <button class="key" data-key="I">I</button>
+                        <button class="key" data-key="O">O</button>
+                        <button class="key" data-key="P">P</button>
+                  </div>
+                  <div class="keyboard-row">
+                        <button class="key" data-key="A">A</button>
+                        <button class="key" data-key="S">S</button>
+                        <button class="key" data-key="D">D</button>
+                        <button class="key" data-key="F">F</button>
+                        <button class="key" data-key="G">G</button>
+                        <button class="key" data-key="H">H</button>
+                        <button class="key" data-key="J">J</button>
+                        <button class="key" data-key="K">K</button>
+                        <button class="key" data-key="L">L</button>
+                  </div>
+                  <div class="keyboard-row">
+                        <button class="key" data-key="ENTER">ENTER</button>
+                        <button class="key" data-key="Z">Z</button>
+                        <button class="key" data-key="X">X</button>
+                        <button class="key" data-key="C">C</button>
+                        <button class="key" data-key="V">V</button>
+                        <button class="key" data-key="B">B</button>
+                        <button class="key" data-key="N">N</button>
+                        <button class="key" data-key="M">M</button>
+                        <button class="key" data-key="BACKSPACE">⌫</button>
+                  </div>
+            </div>
+
+            <div class="message" id="gameMessage"></div>
+      </div>
+
+      <script src="words.js"></script>
+      <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+:root {
+  --primary-color: #faf4ef;
+  --secondary-color: #feca57;
+  --correct-color: #2ecc71;
+  --wrong-position-color: #2d3436;
+  --wrong-color: #e21e08;
+  --background-color: #ff7b00;
+  --text-color: #000000;
+  --tile-background: #ffffff;
+  --tile-border: #050505;
+  --keyboard-bg: #ffffff;
+  --keyboard-hover: #cbd5e0;
+  --cursor-color: #ff9f43;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  color: var(--text-color);
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  -webkit-text-stroke: 2px black 0.5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  animation: titleFadeIn 1s ease-out;
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.control-btn {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(255, 159, 67, 0.2);
+}
+
+.control-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 159, 67, 0.3);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+.word-length-selector {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.word-length-btn {
+  background-color: white;
+  border: 3px solid black;
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.word-length-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.word-length-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  transform: scale(1.05);
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.row.current-row .tile {
+  background-color: var(--tile-background);
+  border-color: var(--tile-border);
+  border-width: 3px;
+}
+
+.tile {
+  width: 60px;
+  height: 60px;
+  background-color: var(--tile-background);
+  border: 2px solid var(--tile-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: default;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: var(--text-color);
+}
+
+.tile.current {
+  position: relative;
+}
+
+.tile.current::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 4px;
+  background-color: var(--cursor-color);
+  border-radius: 2px;
+  animation: cursorBlink 1s infinite;
+}
+
+.tile.filled {
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.tile.flip {
+  transform: rotateX(180deg);
+}
+
+.tile.correct {
+  background-color: var(--correct-color) !important;
+  border-color: var(--correct-color);
+  color: white;
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tile.wrong-position {
+  background-color: var(--wrong-position-color);
+  border-color: var(--wrong-position-color);
+  color: white;
+  animation: shakeEffect 0.5s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+.tile.wrong {
+  background-color: var(--wrong-color);
+  border-color: var(--wrong-color);
+  color: white;
+  animation: fadeEffect 0.5s ease-out;
+}
+
+.tile.all-wrong {
+  animation: wrongShake 0.5s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  animation: slideUp 0.5s ease-out;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.key {
+  min-width: 43px;
+  height: 58px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--keyboard-bg);
+  border: 1.5px solid var(--tile-border);
+  color: var(--text-color);
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.key:hover {
+  background-color: var(--keyboard-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.key:active {
+  transform: translateY(0);
+}
+
+.key[data-key="ENTER"],
+.key[data-key="BACKSPACE"] {
+  min-width: 70px;
+  font-size: 0.9rem;
+}
+
+.key.correct {
+  background-color: var(--correct-color);
+  color: white;
+}
+
+.key.wrong-position {
+  background-color: var(--wrong-position-color);
+  color: white;
+}
+
+.key.wrong {
+  background-color: var(--wrong-color);
+  color: white;
+}
+
+.message {
+  text-align: center;
+  min-width: fit-content;
+  min-height: 30px;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background-color: white;
+  border: 3px solid var(--tile-border);
+  border-radius: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes titleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shakeEffect {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes fadeEffect {
+  from {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wrongShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-10px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .tile {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+  }
+
+  .key {
+    min-width: 32px;
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .key[data-key="ENTER"],
+  .key[data-key="BACKSPACE"] {
+    min-width: 55px;
+    font-size: 0.8rem;
+  }
+
+  .word-length-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}

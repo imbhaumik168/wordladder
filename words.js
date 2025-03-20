@@ -1,0 +1,5 @@
+const WORD_LISTS = {
+  3: ["CAT", "DOG", "BAT", "ROW", "POT", "GUN", "NAP", "WIT", "VOW"],
+  5: ["APPLE", "LUCKY", "MAGIC", "HONOR", "SUNNY", "STARS", "WORLD"],
+  8: ["SUNSHINE", "KINDNESS", "CHEERFUL", "GLITTERY", "DOLPHINS", "LANTERNS"],
+};
