@@ -36,18 +36,6 @@ The Word Ladder Game is an interactive word-guessing game built with HTML, CSS, 
 - **CSS**: Styling and animations
 - **JavaScript**: Game logic, event handling, and interactions
 
-## Setup & Installation
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/word-ladder-game.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd word-ladder-game
-   ```
-3. Open `index.html` in a browser to play the game.
-
 ## Future Improvements
 
 - Add a dictionary validation for guessed words.
